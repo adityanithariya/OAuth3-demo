@@ -10,7 +10,6 @@
     "bugs": {
         "url": "https://github.com/adityanithariya/OAuth3-demo/issues"
     },
-    "homepage": "https://github.com/adityanithariya/OAuth3-demo#readme",
     "private": true,
     "engines": {
         "npm": "9.6.1",
