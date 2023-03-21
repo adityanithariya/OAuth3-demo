@@ -1,8 +1,49 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Signin = () => {
     const navigate = useNavigate();
+
+    function makeid(length) {
+        let result = '';
+        const characters =
+            'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        const charactersLength = characters.length;
+        let counter = 0;
+        while (counter < length) {
+            result += characters.charAt(
+                Math.floor(Math.random() * charactersLength)
+            );
+            counter += 1;
+        }
+        return result;
+    }
+
+    const session_id = makeid(9);
+    console.log(session_id);
+
+    const useOauth = async () => {
+        try {
+            const response = await axios({
+                method: 'post',
+                url: 'http://192.168.137.226:8000/getAuthToken/',
+                body: `session_id=${session_id}`,
+                // timeout: 1000 * 60 * 60,
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            });
+            const res = await response.json();
+            console.log(res);
+        } catch (error) {
+            // Timeouts if the request takes
+            // longer than 6 seconds
+            console.log(error.name === 'AbortError');
+        }
+    };
+
     return (
         <div>
             <section class="vh-100 bg-dark">
@@ -79,18 +120,15 @@ const Signin = () => {
                                     </p>
                                 </div>
 
-                                <p
-                                    to="/admin-panel"
-                                    class="btn btn-primary btn-lg btn-block mb-2"
-                                    href="#!"
+                                <a
+                                    onClick={useOauth}
+                                    class="btn btn-primary"
+                                    href={`http://192.168.137.226:8000/connect?client_id=ZM9fmY4CTt&req_scopes=AC0123&session_id=${session_id}`}
+                                    target={'_blank'}
                                     role="button"
-                                    onClick={() =>
-                                        navigate('/admin-panel/home')
-                                    }
                                 >
-                                    <i class="fab fa-facebook-f me-2"></i>
-                                    Continue with OAuth3
-                                </p>
+                                    Continue With OAuth3
+                                </a>
                             </form>
                         </div>
                     </div>

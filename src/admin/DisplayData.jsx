@@ -73,12 +73,20 @@ const DisplayData = () => {
                                 </span>
                             </li>
                             <li>
-                                <a href="#" class="nav-link px-0 align-middle">
+                                <span
+                                    href="#"
+                                    class="nav-link px-0 align-middle"
+                                >
                                     <i class="fs-4 bi-table"></i>{' '}
-                                    <span class="ms-1 d-none d-sm-inline">
-                                        Orders
+                                    <span
+                                        class="ms-1 d-none d-sm-inline"
+                                        onClick={() =>
+                                            navigate('/admin-panel/request')
+                                        }
+                                    >
+                                        Get Data
                                     </span>
-                                </a>
+                                </span>
                             </li>
 
                             <li>

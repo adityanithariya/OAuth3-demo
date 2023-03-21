@@ -1,5 +1,6 @@
 import React from 'react';
 import SideBar from './SideBar';
+import { data } from '../firebase/data';
 
 const Dashboard = () => {
     return (

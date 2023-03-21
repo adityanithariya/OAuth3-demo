@@ -11,3 +11,5 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 // Initialize Firebase
+
+// Initialize Cloud Firestore and get a reference to the service
